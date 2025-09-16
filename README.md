@@ -23,6 +23,13 @@ The goal is to demonstrate how foundation models like CLIP can be adapted to med
 - **Experimental Setup:** 80-20 train-test split, 50 epochs, batch size 32.  
 
 ---
+## 💻 Languages & Libraries
+- **Python 3.8+**
+- [PyTorch](https://pytorch.org/) – for CLIP model
+- [scikit-learn](https://scikit-learn.org/) – for Logistic Regression
+- [NumPy](https://numpy.org/) & [Pandas](https://pandas.pydata.org/) – for data processing
+- [Matplotlib](https://matplotlib.org/) & [Seaborn](https://seaborn.pydata.org/) – for visualization
+---
 
 ## 📂 Repository Structure
 📦 Breast-Cancer-CLIP/
