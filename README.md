@@ -1,6 +1,5 @@
 # 🩺 Breast Cancer Image Classification Using CLIP-Based Feature Extraction and Logistic Regression
 
-## 📖 Overview
 This repository presents a lightweight and interpretable pipeline for **breast cancer image classification**.  
 We combine **CLIP (Contrastive Language–Image Pretraining)** for semantic-rich image feature extraction with a **Logistic Regression** classifier to detect benign and malignant lesions using the **CBIS-DDSM** dataset.  
 
