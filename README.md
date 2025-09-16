@@ -36,7 +36,4 @@ The goal is to demonstrate how foundation models like CLIP can be adapted to med
 ├── 📄 Breast-Cancer-CLIP.ipynb # Full implementation notebook
 ├── 📄 Report.pdf # IEEE-format research paper
 ├── 📄 README.md # Project documentation
-└── 📁 assets/ # Visuals (architecture, predictions)
-
-
 ---
