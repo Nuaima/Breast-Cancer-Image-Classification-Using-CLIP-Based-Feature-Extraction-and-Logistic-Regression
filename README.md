@@ -1,37 +1,87 @@
-# 🩺 Breast Cancer Image Classification Using CLIP-Based Feature Extraction and Logistic Regression
+# Breast Cancer Image Classification with CLIP Features
 
-This repository presents a lightweight and interpretable pipeline for **breast cancer image classification**.  
-We combine **CLIP (Contrastive Language–Image Pretraining)** for semantic-rich image feature extraction with a **Logistic Regression** classifier to detect benign and malignant lesions using the **CBIS-DDSM** dataset.  
+A medical-imaging machine-learning project exploring whether image embeddings from a pretrained vision-language model can be used as input features for a conventional classifier.
 
-The goal is to demonstrate how foundation models like CLIP can be adapted to medical imaging with **minimal compute** and **no fine-tuning**.  
+The notebook combines **CLIP ViT-B/32 feature extraction** with **scikit-learn Logistic Regression** on the **CBIS-DDSM mammography dataset**. The approach uses CLIP as a feature extractor rather than fine-tuning the full vision-language model.
+
+> **Research / educational project only.** This implementation is not a medical device, has not been clinically validated, and must not be used to diagnose, screen, or guide treatment.
+
+## Problem and approach
+
+Mammography images contain visual patterns that can be challenging to represent with handcrafted features. This project explores a transfer-learning workflow:
+
+1. Load and prepare mammography images from CBIS-DDSM.
+2. Use the pretrained CLIP ViT-B/32 image encoder to obtain image embeddings.
+3. Train a Logistic Regression classifier on the extracted representations.
+4. Evaluate the classifier using standard classification metrics.
+
+The goal is to study a lightweight feature-extraction baseline, not to claim clinical performance.
+
+## Model pipeline
+
+```text
+Mammography images
+       |
+       v
+Image preprocessing
+       |
+       v
+Pretrained CLIP ViT-B/32 image encoder
+       |
+       v
+Image embeddings
+       |
+       v
+Logistic Regression
+       |
+       v
+Predicted class
+```
+
+## Dataset
+
+- **Dataset:** [CBIS-DDSM](https://www.cancerimagingarchive.net/collection/cbis-ddsm/)
+- **Modality:** Mammography
+- **Task:** Image classification using the labels prepared for the notebook.
+
+Dataset versions and preprocessing choices can affect the number of usable images and class distribution. Refer to the notebook's data-loading and preprocessing cells for the exact subset and label mapping used in a run.
+
+## Technologies
+
+- Python
+- PyTorch
+- CLIP / pretrained ViT-B/32 image encoder
+- scikit-learn
+- NumPy and Pandas
+- Matplotlib / Seaborn
+
+## Run the notebook
+
+1. Clone this repository.
+2. Open `breast-cancer-imageclassification.ipynb` in Jupyter or Google Colab.
+3. Obtain access to CBIS-DDSM and arrange the dataset in the directory structure expected by the notebook.
+4. Install the notebook's required Python packages.
+5. Run the notebook cells in order.
+
+The dataset is not included in this repository. A CUDA-enabled GPU may reduce feature-extraction time, but availability depends on the runtime and installed PyTorch build.
+
+## Evaluation and reproducibility
+
+The notebook contains the implementation and evaluation workflow. Results depend on the selected dataset subset, preprocessing, label mapping, train/test partition, and classifier configuration. No performance figure is stated here because a reproducible result should be reported together with those experimental details.
+
+For a rigorous comparison, use a fixed and documented split, report per-class precision/recall/F1 and a confusion matrix, and guard against patient-level leakage between training and test data.
+
+## Limitations
+
+- CLIP was pretrained on general image-text data, not specifically validated for mammography.
+- A simple classifier over embeddings is a baseline, not a clinically validated model.
+- Dataset imbalance, acquisition differences, and data leakage can materially affect evaluation.
+- Predictions require expert review and must not be interpreted as medical advice.
+
+## Repository contents
+
+- `breast-cancer-imageclassification.ipynb` — notebook containing the implementation.
 
 ---
 
-## 🎯 Motivation
-- Traditional deep learning approaches are often **resource-intensive** and lack **interpretability**.  
-- CLIP provides **generalized vision-language embeddings**, but remains underexplored in clinical tasks.  
-- We address this gap by **extracting CLIP features** and feeding them into a **simple, explainable classifier**.  
-
----
-
-## 🛠️ Methodology
-- **Dataset:** CBIS-DDSM, with **10,239 high-resolution mammograms** (benign, malignant, normal).  
-- **Feature Extraction:** CLIP (**ViT-B/32**) used to embed images (zero-shot, no fine-tuning).  
-- **Classifier:** Logistic Regression (one-vs-rest, L2 regularization).  
-- **Evaluation Metrics:** Accuracy, Precision, Recall, F1-score.  
-- **Experimental Setup:** 80-20 train-test split, 50 epochs, batch size 32.  
-
----
-## 💻 Languages & Libraries
-- **Python 3.8+**
-- [PyTorch](https://pytorch.org/) – for CLIP model
-- [scikit-learn](https://scikit-learn.org/) – for Logistic Regression
-- [NumPy](https://numpy.org/) & [Pandas](https://pandas.pydata.org/) – for data processing
-- [Matplotlib](https://matplotlib.org/) & [Seaborn](https://seaborn.pydata.org/) – for visualization
----
-
-## 📂 Repository Structure
-📦 Breast-Cancer-CLIP/
-├── 📄 Breast-Cancer-CLIP.ipynb # Full implementation notebook
-├── 📄 README.md # Project documentation
----
+Built by [Nuaima Saeed](https://github.com/Nuaima).
